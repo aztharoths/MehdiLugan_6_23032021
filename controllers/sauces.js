@@ -25,11 +25,8 @@ exports.createSauce = (req, res, next) => {
 };
 //----------------------------------------READ----------------------------------------//
 exports.getSauce = (req, res, next) => {
-  Sauce.findOne({ _id: req.params.id })
-    .then((sauce) => {
-      res.status(200).json({ sauce });
-      console.log(sauce);
-    })
+  Sauce.findOne({ _id: req.params._id })
+    .then((sauce) => res.status(200).json(sauce))
     .catch((error) => res.status(404).json({ error }));
 };
 
@@ -41,6 +38,16 @@ exports.getAllSauce = (req, res, next) => {
 
 //----------------------------------------UPDATE----------------------------------------//
 
-exports.updateSauce = (req, res, next) => {};
+exports.updateSauce = (req, res, next) => {
+  Sauce.updateOne({ _id: req.params._id }, { ...req.body, _id: req.params._id })
+    .then(() => res.status(200).json({ message: "Sauce mise à jour !" }))
+    .catch((error) => res.status(400).json({ error }));
+};
 
 //----------------------------------------DELETE----------------------------------------//
+
+exports.deleteSauce = (req, res, next) => {
+  Sauce.deleteOne({ _id: req.params._id })
+    .then(() => res.Status(200).json({ message: "Sauce Supprimée !" }))
+    .catch((error) => res.status(400).json({ error }));
+};
