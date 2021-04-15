@@ -6,11 +6,11 @@
 
 2- Installer Nvm https://github.com/coreybutler/nvm-windows
 
-3- Dans un terminal, installer deux version de node grâce à nvm avec le commande nvm install <version>
+3- Dans un terminal, installer deux version de node grâce à nvm avec le commande nvm install
   
-    a- Nous avons besoin de la version 10.0.0 pour l'utilisation du front-end
+    Nous avons besoin de la version 10.0.0 pour l'utilisation du front-end (nvm install 10.0.0)
     
-    b- Nous avons besoin de la version 14.16.0 pour l'utilisation du back-end
+    Nous avons besoin de la version 14.16.0 pour l'utilisation du back-end (nvm install 14.16.0)
     
 4- Dans le dossier front-end, ouvrir un terminal et utiliser node 10.0.0 grâce à la commande nvm use 10.0.0
 
