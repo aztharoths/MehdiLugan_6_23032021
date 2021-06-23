@@ -1,7 +1,6 @@
 const Sauce = require("../models/Sauce");
 const fs = require("fs");
 const sanitize = require("mongo-sanitize");
-const validator = require("validator");
 
 //----------------------------------------CRUD----------------------------------------//
 
@@ -92,7 +91,7 @@ exports.likeSauce = (req, res, next) => {
           }
           break;
         default:
-          console.log("on vera");
+          console.log("Erreur");
       }
     })
 

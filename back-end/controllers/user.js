@@ -8,13 +8,13 @@ const User = require("../models/User");
 exports.signup = (req, res, next) => {
   let email = sanitize(req.body.email);
   let pass = sanitize(req.body.password);
+  let safeMail = Buffer.from(email).toString("base64");
   if (validator.isEmail(email)) {
-    const regPass = /^[\w]{8,}$/;
-    if (regPass.test(pass)) {
+    if (validator.isStrongPassword(pass)) {
       bcrypt
         .hash(pass, 10)
         .then((hash) => {
-          const user = new User({ email: email, password: hash });
+          const user = new User({ email: safeMail, password: hash });
           user
             .save()
             .then(() => res.status(201).json({ message: "Utilisateur créé!" }))
@@ -32,8 +32,9 @@ exports.signup = (req, res, next) => {
 exports.login = (req, res, next) => {
   let email = sanitize(req.body.email);
   let pass = sanitize(req.body.password);
+  let safeMail = Buffer.from(email).toString("base64");
   if (validator.isEmail(email)) {
-    User.findOne({ email: email })
+    User.findOne({ email: safeMail })
       .then((user) => {
         if (!user) {
           return res.status(401).json({ error: "Utilisateur non trouvé" });
